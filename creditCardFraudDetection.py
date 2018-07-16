@@ -44,6 +44,16 @@ fig = plt.figure(figsize=(12,9))
 sns.heatmap(corrmat,vmax=0.8,square = True)
 plt.show()
 
+# get all the columns from sampleDataset
+columns = sampleDataset.columns.tolist()
+
+# filtering the columns to remove the the unnecessary data
+columns = [c for c in columns if c not in ["Class"]]
+
+X = sampleDataset[columns]
+Y = sampleDataset["Class"]
+
+
 
 
 
