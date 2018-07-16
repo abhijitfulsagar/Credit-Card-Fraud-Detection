@@ -14,7 +14,17 @@ import seaborn as sns
 import sklearn
 
 # getting the dataset
-datset = pd.read_csv("creditcard.csv")
+dataset = pd.read_csv("creditcard.csv")
 
+# exploring the dataset
+print(dataset.columns)
+print(dataset.shape)
+print(dataset.describe())
 
+sampleDataset = dataset.sample(frac = 0.2,random_state=0)
+print(sampleDataset.shape)
+
+# plotting the histograms
+sampleDataset.hist(figsize = (20,20))
+plt.show()
 
