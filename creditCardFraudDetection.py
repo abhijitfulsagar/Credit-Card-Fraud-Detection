@@ -37,7 +37,12 @@ print("Valid:{}".format(len(valid)))
 print("Fraud:{}".format(len(fraud)))
 print("outlierFraction:{}".format(len(outlierFraction)))
 
+# correlation matrix
+corrmat = sampleDataset.corr()
+fig = plt.figure(figsize=(12,9))
 
+sns.heatmap(corrmat,vmax=0.8,square = True)
+plt.show()
 
 
 
