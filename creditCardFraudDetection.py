@@ -28,3 +28,26 @@ print(sampleDataset.shape)
 sampleDataset.hist(figsize = (20,20))
 plt.show()
 
+# determinig the number of fraud cases in the sample dataset
+fraud = sampleDataset[sampleDataset['Class'] == 1]
+valid = sampleDataset[sampleDataset['Class'] == 0]
+outlierFraction = len(fraud) / float(len(valid))
+
+print("Valid:{}".format(len(valid)))
+print("Fraud:{}".format(len(fraud)))
+print("outlierFraction:{}".format(len(outlierFraction)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
