@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import scipy as sc
 import seaborn as sns
-import sklearn
 
 # getting the dataset
 dataset = pd.read_csv("creditcard.csv")
@@ -31,11 +30,12 @@ plt.show()
 # determinig the number of fraud cases in the sample dataset
 fraud = sampleDataset[sampleDataset['Class'] == 1]
 valid = sampleDataset[sampleDataset['Class'] == 0]
-outlierFraction = len(fraud) / float(len(valid))
+outlierFraction = len(fraud) / len(valid)
 
 print("Valid:{}".format(len(valid)))
 print("Fraud:{}".format(len(fraud)))
-print("outlierFraction:{}".format(len(outlierFraction)))
+#print("outlierFraction:{}".format(len(outlierFraction)))
+print(outlierFraction)
 
 # correlation matrix
 corrmat = sampleDataset.corr()
@@ -53,10 +53,22 @@ columns = [c for c in columns if c not in ["Class"]]
 X = sampleDataset[columns]
 Y = sampleDataset["Class"]
 
+# Anomaly detection
 
+from sklearn.ensemble import IsolationForest
+from sklearn.neighbors import LocalOutlierFactor
 
+# defining random_state
+state = 0
 
-
+# defining outlier detection methods
+classifiers = {
+               "Isolation Forest": IsolationForest(max_samples=len(X), 
+                                                   contamination=outlierFraction,
+                                                   random_state=0),
+               "Local Outlier Factor": LocalOutlierFactor(n_neighbors=20,
+                                                    contamination=outlierFraction)                               
+               }
 
 
 
