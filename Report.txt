@@ -1,0 +1,21 @@
+Isolation Forest:IsolationForest(bootstrap=False, contamination=0.0017762926486106225,
+        max_features=1.0, max_samples=56961, n_estimators=100, n_jobs=1,
+        random_state=0, verbose=0)
+0.9975246221098646
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00     56860
+          1       0.30      0.31      0.31       101
+
+avg / total       1.00      1.00      1.00     56961
+
+Local Outlier Factor:LocalOutlierFactor(algorithm='auto', contamination=0.0017762926486106225,
+          leaf_size=30, metric='minkowski', metric_params=None, n_jobs=1,
+          n_neighbors=20, p=2)
+0.9964361580730675
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00     56860
+          1       0.00      0.00      0.00       101
+
+avg / total       1.00      1.00      1.00     56961
