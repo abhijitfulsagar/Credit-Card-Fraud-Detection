@@ -54,7 +54,7 @@ X = sampleDataset[columns]
 Y = sampleDataset["Class"]
 
 # Anomaly detection
-
+from sklearn.metrics import classification_report,accuracy_score
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 
@@ -70,6 +70,30 @@ classifiers = {
                                                     contamination=outlierFraction)                               
                }
 
+
+# fitting the model
+nOutliers = len(fraud)
+for key,value in classifiers.items():
+    
+    # fit the data and tag outliers
+    if key == 'Local Outlier Factor':
+        yPred = value.fit_predict(X)
+        scoresPred = value.negative_outlier_factor_
+    else:
+        value.fit(X)
+        scoresPred = value.decision_function(X)
+        yPred = value.predict(X)
+        
+    # reshape the predicition values to 0 for valid, 1 for fraud
+    yPred[yPred == 1] = 0
+    yPred[yPred == -1] =1
+
+    nErrors = (yPred != Y).sum()
+    
+    # run classification matrics
+    print('{}:{}'.format(key,value))
+    print(accuracy_score(Y,yPred))
+    print(classification_report(Y,yPred))
 
 
 
