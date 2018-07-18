@@ -91,9 +91,9 @@ for key,value in classifiers.items():
     nErrors = (yPred != Y).sum()
     
     # run classification matrics
-    print('{}:{}'.format(key,value))
+    print('{}:{}'.format(key,nErrors))
     print(accuracy_score(Y,yPred))
-    print(classification_report(Y,yPred))
+    print(classification_report(Y,yPred ))
 
 
 
